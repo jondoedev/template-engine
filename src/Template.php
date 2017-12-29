@@ -11,15 +11,14 @@ class Template
         $this->vars[$key] = $value;
     }
 
-    public function render($template)
+    public function render($file)
     {
-        $path = $template . '.php';
-        if (file_exists($path)) {
+        $path = __DIR__.'/../templates/' . $file . '.php';
+        if (file_exists($path)){
             $content = file_get_contents($path);
-
-            return $content;
-        } else {
-            return '404 NOT Found';
+            eval(' ?>' . $content . '<?php ');
+        }else{
+            exit('<h1>Template Error</h1>');
         }
     }
 }

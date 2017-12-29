@@ -8,3 +8,4 @@ ini_set('display_errors', 1);
 
 $template = new Template;
 $template->add('username', 'Dmitry');
+$template->render('main');
