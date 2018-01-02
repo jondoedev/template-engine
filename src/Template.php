@@ -105,9 +105,7 @@ class Template
 				return "<?php extract(" . $matches[2] . "); ?>\n" . file_get_contents(__DIR__.'/../templates/' . $matches[1] .'.php');
             }, $content);
 
-            foreach ($this->vars as $key => $value) {
-                $content = preg_replace('/\{' . $key . '\}/', $value, $content);
-            }
+            $content = preg_replace('/{(.*?)}/', '<?= \$$1 ?>', $content);
 
             //custom synax for foreach cycle
             $content = preg_replace('/\{ foreach (.*) \}/', '<?php foreach ($1) : ?>',$content);
@@ -121,6 +119,7 @@ class Template
 	        $compiled_path = __DIR__.'/../compiled_templates/' . $file . '.php';
 	        file_put_contents($compiled_path, $content);
 
+	        extract($this->vars);
             eval(' ?>' . $content . '<?php ');
 
         } else {
