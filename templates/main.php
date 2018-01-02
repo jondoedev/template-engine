@@ -1,1 +1,2 @@
-<h1>Hello, it Works</h1>
+
+{name} is {age} years old and he likes {hobby}!
