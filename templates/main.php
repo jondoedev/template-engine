@@ -14,6 +14,8 @@
                 'City' => 'Kharkiv']) ?>
     </ul>
 
+{% partial 'content' %}
+
 </div>
 </body>
 </html>
