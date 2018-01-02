@@ -97,8 +97,12 @@ class Template
         if (file_exists($path)) {
             $content = file_get_contents($path);
 
-	        $content = preg_replace_callback("/{% partial '(.*)'\ %}/", function($matches) {
+	        $content = preg_replace_callback("/{% partial '(.*)' %}/", function($matches) {
 				return file_get_contents(__DIR__.'/../templates/' . $matches[1] .'.php');
+            }, $content);
+
+	        $content = preg_replace_callback("/{% partial '(.*)', (\[.*\]) %}/", function($matches) {
+				return "<?php extract(" . $matches[2] . "); ?>\n" . file_get_contents(__DIR__.'/../templates/' . $matches[1] .'.php');
             }, $content);
 
             foreach ($this->vars as $key => $value) {

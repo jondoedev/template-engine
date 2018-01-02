@@ -16,6 +16,9 @@
 
 {% partial 'content' %}
 
+{% partial 'content', ['name' => 'Ololo'] %}
+
+
 </div>
 </body>
 </html>
