@@ -1,3 +1,19 @@
-<div><?= $this->hello() ?>
-My name is {name} {last_name}.<br>
-I'm {age} years old and now i'm {position} in {company}</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{pageTitle}</title>
+</head>
+<body>
+
+<div class="content">
+    <b>Today is:</b> <?= $this->currentDate() ?><br>
+    <ul>
+        <?= $this->listParse([
+                'Country' => 'Ukraine',
+                'City' => 'Kharkiv']) ?>
+    </ul>
+
+</div>
+</body>
+</html>

@@ -8,28 +8,17 @@ class Template
     public $helpers = [];
 
     /**
-     * @param $key
-     * @param $value
-     * add a single variable to $vars array
-     * example:
-     * $template_object->append('var' => 'value')
-     */
-    public function append($key, $value)
-    {
-        $this->vars[$key] = $value;
-    }
-
-    /**
      * @param $array
      *
      * add an array of variables to $vars array
      * example:
-     * $template_object->appendMultiple([
+     * $template_object->append([
      *                                          'var1' => value1,
      *                                          'var2' => 'value2'
      *                                          ]);
      */
-    public function appendMultuple($array)
+
+    public function append($array)
     {
         foreach ($array as $key => $value)
         {
