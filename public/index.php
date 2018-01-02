@@ -27,5 +27,5 @@ $tpl->setHelper('listParse', function ($data) {
 
 
 
-$tpl->render('main');
+echo $tpl->render('main');
 
