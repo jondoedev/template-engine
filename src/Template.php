@@ -97,13 +97,10 @@ class Template
         if (file_exists($path)) {
             $content = file_get_contents($path);
 
-/*            $content = preg_replace('/\{% partial \'(.*)\' \%}/', '<?php include __DIR__.\'/../templates/$1.php\' ?>', $content);*/
+	        $content = preg_replace_callback("/{% partial '(.*)'\ %}/", function($matches) {
+				return file_get_contents(__DIR__.'/../templates/' . $matches[1] .'.php');
+            }, $content);
 
-	        $compiled_path = __DIR__.'/../compiled_templates/' . $file . '.php';
-	        file_put_contents($compiled_path, $content);
-
-            eval(' ?>' . $content . '<?php ');
-//			require $compiled_path;
             foreach ($this->vars as $key => $value) {
                 $content = preg_replace('/\{' . $key . '\}/', $value, $content);
             }
@@ -117,7 +114,10 @@ class Template
             $content = preg_replace('/\<\!\-\- else \-\-\>/', '<?php else : ?>',$content);
             $content = preg_replace('/\<\!\-\- endif \-\-\>/', '<?php endif; ?>',$content);
 
-            $content = preg_replace('/\{% partial \'(.*)\' \%}/', '<?php include __DIR__.\'/../templates/$1.php\' ?>', $content);
+	        $compiled_path = __DIR__.'/../compiled_templates/' . $file . '.php';
+	        file_put_contents($compiled_path, $content);
+
+            eval(' ?>' . $content . '<?php ');
 
         } else {
             exit('<h1>Template Error</h1>');
