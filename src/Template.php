@@ -30,7 +30,7 @@ class Template
         }
     }
 
-  
+
 
 
     public function __call($helper, $arguments)
