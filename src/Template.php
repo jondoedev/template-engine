@@ -30,7 +30,11 @@ class Template
         }
     }
 
-
+    public function setHelper($name, $handler)
+    {
+        $this->helpers[$name] = $handler;
+        return $handler;
+    }
 
 
     public function __call($helper, $arguments)
@@ -49,7 +53,12 @@ class Template
         unset($this->vars);
     }
 
-
+    public function partial($file, array $visibleVars)
+    {
+        if(empty($visibleVars)){
+            $visibleVars = $this->vars;
+        }
+    }
 
     public function render($file)
     {
