@@ -96,13 +96,15 @@ class Template {
 
 			$content = preg_replace( '/{!(.*?)!}/', '<?= \$$1 ?>', $content );
 			//custom syntax for foreach cycle
-			$content = preg_replace( '/\{ foreach (.*) \}/', '<?php foreach ($1) : ?>', $content );
-			$content = preg_replace( '/\{ endforeach \}/', '<?php foreach; ?>', $content );
+			$content = preg_replace( '/\{% foreach (.*) %}/', '<?php foreach ($1) : ?>', $content );
+			$content = preg_replace( '/\{% endforeach %}/', '<?php foreach; ?>', $content );
 
 			//custom syntax for if condition
-			$content = preg_replace( '/\<\!\-\- if (.*) \-\-\>/', '<?php if ($1) : ?>', $content );
-			$content = preg_replace( '/\<\!\-\- else \-\-\>/', '<?php else : ?>', $content );
-			$content = preg_replace( '/\<\!\-\- endif \-\-\>/', '<?php endif; ?>', $content );
+			$content = preg_replace( '/\{% if (.*) %}/', '<?php if ($1) : ?>', $content );
+			$content = preg_replace( '/\{% else %}/', '<?php else : ?>', $content );
+			$content = preg_replace( '/\{% endif %}/', '<?php endif; ?>', $content );
+			//custom syntax for php tags
+			$content = preg_replace( '/\{% endif %}/', '<?php endif; ?>', $content );
 
 			//to see the compiled php code
 			$compiled_path = __DIR__ . '/../compiled_templates/' . $file . '.php';
