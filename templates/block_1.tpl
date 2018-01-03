@@ -3,8 +3,8 @@
         <div class="fh5co-icon">
             <i class="icon-flag2"></i>
         </div>
-        <h3>{block_3_title}</h3>
-        <p>My name is {name} {last_name}.<br>
-            I'm {age} years old and now i'm {position} in {company}.</p>
+        <h3><?= $this->hello() ?></h3>
+        <p>My name is {!name!} {!last_name!}.<br>
+            I'm {!age!} years old and now i'm {!position!} in {!company!}.</p>
     </div>
 </div>

@@ -9,7 +9,7 @@
                     {% partial 'block_3', ['age', 'position'] %}
 					<div class="clearfix visible-sm-block"></div>
 				</div>
-			</div>
+
 		</section>	
 
         {% partial '_footer' %}

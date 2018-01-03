@@ -11,6 +11,13 @@ $tpl->setHelper('hello', function () {
 $tpl->setHelper('currentDate', function () {
     echo date('m:d:Y');
 });
+$tpl->setHelper('listParse', function ($data) {
+    foreach ($data as $key => $value) {
+        echo '<li><b>' . $key . '</b> : ' . $value . '</li>';
+    }
+});
+
+// adding multiple variables
 $tpl->append([
     'name' => 'Dmitry',
     'last_name' => 'Kalenyuk',
@@ -25,12 +32,8 @@ $tpl->append([
     'headerLogin' => 'Login',
     'headerSignUp' => 'Sign Up'
 ]);
-$tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
-$tpl->setHelper('listParse', function ($data) {
-    foreach ($data as $key => $value) {
-        echo '<li><b>' . $key . '</b> : ' . $value . '</li>';
-    }
-});
+
+// adding single variable
 $tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
 
 

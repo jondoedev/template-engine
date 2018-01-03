@@ -1,4 +1,5 @@
 {
+  "name": "kalenyukk/templateEngine",
 
   "autoload": {
     "psr-4": {

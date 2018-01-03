@@ -3,7 +3,7 @@
 namespace TemplateEngine;
 
 class Template {
-	public $vars = [];
+	private $vars = [];
 	public $helpers = [];
 
 	/**
@@ -82,19 +82,19 @@ class Template {
 	 * also this method implements a custom syntax using regular expressions
 	 */
 	public function render( $file ) {
-		$path = __DIR__ . '/../templates/' . $file . '.php';
+		$path = __DIR__ . '/../templates/' . $file . '.tpl';
 		if ( file_exists( $path ) ) {
 			$content = file_get_contents( $path );
 
 			$content = preg_replace_callback( "/{% partial '(.*)' %}/", function ( $matches ) {
-				return file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.php' );
+				return file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.tpl' );
 			}, $content );
 
 			$content = preg_replace_callback( "/{% partial '(.*)', (\[.*\]) %}/", function ( $matches ) {
-				return "<?php extract(" . $matches[2] . "); ?>\n" . file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.php' );
+				return "<?php extract(" . $matches[2] . "); ?>\n" . file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.tpl' );
 			}, $content );
 
-			$content = preg_replace( '/{(.*?)}/', '<?= \$$1 ?>', $content );
+			$content = preg_replace( '/{!(.*?)!}/', '<?= \$$1 ?>', $content );
 			//custom syntax for foreach cycle
 			$content = preg_replace( '/\{ foreach (.*) \}/', '<?php foreach ($1) : ?>', $content );
 			$content = preg_replace( '/\{ endforeach \}/', '<?php foreach; ?>', $content );
@@ -104,6 +104,7 @@ class Template {
 			$content = preg_replace( '/\<\!\-\- else \-\-\>/', '<?php else : ?>', $content );
 			$content = preg_replace( '/\<\!\-\- endif \-\-\>/', '<?php endif; ?>', $content );
 
+			//to see the compiled php code
 			$compiled_path = __DIR__ . '/../compiled_templates/' . $file . '.php';
 			file_put_contents( $compiled_path, $content );
 

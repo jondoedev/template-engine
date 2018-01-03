@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{pageTitle}</title>
+    <title>{!pageTitle!}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -66,14 +66,14 @@
         <div class="container">
             <nav role="navigation">
                 <ul class="pull-left left-menu">
-                    <li><a href="#">{headerAbout}</a></li>
-                    <li><a href="#">{headerTour}</a></li>
-                    <li><a href="#">{headerPricing}</a></li>
+                    <li><a href="#">{!headerAbout!}</a></li>
+                    <li><a href="#">{!headerTour!}</a></li>
+                    <li><a href="#">{!headerPricing!}</a></li>
                 </ul>
-                <h1 id="fh5co-logo"><a href="#">{projectName}<span>.</span></a></h1>
+                <h1 id="fh5co-logo"><a href="#">{!projectName!}<span>.</span></a></h1>
                 <ul class="pull-right right-menu">
-                    <li><a href="#">{headerLogin}</a></li>
-                    <li class="fh5co-cta-btn"><a href="#">{headerSignUp}</a></li>
+                    <li><a href="#">{!headerLogin!}</a></li>
+                    <li class="fh5co-cta-btn"><a href="#">{!headerSignUp!}</a></li>
                 </ul>
             </nav>
         </div>
