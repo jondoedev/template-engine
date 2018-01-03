@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $tpl = new \TemplateEngine\Template;
 $tpl->setHelper('hello', function () {
-    return 'Hello, ';
+    echo 'Hello, ';
 });
 $tpl->setHelper('currentDate', function () {
     echo date('m:d:Y');

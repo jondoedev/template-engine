@@ -82,19 +82,19 @@ class Template {
 	 * also this method implements a custom syntax using regular expressions
 	 */
 	public function render( $file ) {
-		$path = __DIR__ . '/../templates/' . $file . '.tpl';
+		$path = __DIR__ . '/../templates/' . $file . '.php';
 		if ( file_exists( $path ) ) {
 			$content = file_get_contents( $path );
 
 			$content = preg_replace_callback( "/{% partial '(.*)' %}/", function ( $matches ) {
-				return file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.tpl' );
+				return file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.php' );
 			}, $content );
 
 			$content = preg_replace_callback( "/{% partial '(.*)', (\[.*\]) %}/", function ( $matches ) {
-				return "<?php extract(" . $matches[2] . "); ?>\n" . file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.tpl' );
+				return "<?php extract(" . $matches[2] . "); ?>\n" . file_get_contents( __DIR__ . '/../templates/' . $matches[1] . '.php' );
 			}, $content );
 
-			$content = preg_replace( '/{!(.*?)!}/', '<?= \$$1 ?>', $content );
+			$content = preg_replace( '/{% (.*?) %}/', '<?= \$$1 ?>', $content );
 			//custom syntax for foreach cycle
 			$content = preg_replace( '/\{% foreach (.*) %}/', '<?php foreach ($1) : ?>', $content );
 			$content = preg_replace( '/\{% endforeach %}/', '<?php foreach; ?>', $content );
@@ -104,7 +104,7 @@ class Template {
 			$content = preg_replace( '/\{% else %}/', '<?php else : ?>', $content );
 			$content = preg_replace( '/\{% endif %}/', '<?php endif; ?>', $content );
 			//custom syntax for php tags
-			$content = preg_replace( '/\{% endif %}/', '<?php endif; ?>', $content );
+			$content = preg_replace( '/\{ (.*) }/', '<?php $this->$1 ?>', $content );
 
 			//to see the compiled php code
 			$compiled_path = __DIR__ . '/../compiled_templates/' . $file . '.php';

@@ -3,7 +3,7 @@
         <div class="fh5co-icon">
             <i class="icon-flag2"></i>
         </div>
-        <h3>Today is:</b> <?= $this->currentDate() ?></h3>
+        <h3>Today is:</b> { currentDate() }</h3>
         <ul>
             <?= $this->listParse([
                 'Country' => 'Ukraine',
