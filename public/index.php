@@ -16,7 +16,14 @@ $tpl->append([
     'last_name' => 'Kalenyuk',
     'age' => 21,
     'position' => 'PHP Trainee',
-    'company' => 'CodeIT'
+    'company' => 'CodeIT',
+    'projectName' => 'Template Engine',
+    'block_3_title' => 'Partial work example',
+    'headerAbout' => 'About',
+    'headerTour' => 'Tour',
+    'headerPricing' => 'Pricing',
+    'headerLogin' => 'Login',
+    'headerSignUp' => 'Sign Up'
 ]);
 $tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
 $tpl->setHelper('listParse', function ($data) {
@@ -24,8 +31,9 @@ $tpl->setHelper('listParse', function ($data) {
         echo '<li><b>' . $key . '</b> : ' . $value . '</li>';
     }
 });
+$tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
 
 
 
-echo $tpl->render('main');
+echo $tpl->render('layout');
 
