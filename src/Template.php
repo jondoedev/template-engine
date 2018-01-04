@@ -117,20 +117,17 @@ class Template
 
     public function partial($file, array $vars = null)
     {
-        if (!empty($vars) and isset($vars) ){
-            foreach ($vars as $key => $value){
-                $this->vars[$key] = $value;
+        if (!empty($vars)){
+            foreach ($vars as $key => $value) {
+                    $this->vars[$key] = $value;
             }
         }else{
             $vars = $this->vars;
         }
-
         $path = __DIR__ . '/../templates/' . $file . '.php';
         file_get_contents($path);
         ob_start();
         extract($vars);
-        var_dump($vars);
-        die();
         require_once __DIR__ . "/../templates/$file.php";
         $output = ob_get_clean();
         echo $output;
