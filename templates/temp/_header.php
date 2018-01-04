@@ -26,30 +26,30 @@
     <meta name="twitter:card" content="" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="/../../../dmitry.kalenyuk/projects/template-engine/public/images/favicon.ico">
+    <link rel="shortcut icon" href="/public/images/favicon.ico">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,600,400italic,700' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/animate.css">
-    <link rel="stylesheet" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/flexslider.css">
-    <link rel="stylesheet" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/icomoon.css">
-    <link rel="stylesheet" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/magnific-popup.css">
-    <link rel="stylesheet" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/animate.css">
+    <link rel="stylesheet" href="/public/css/flexslider.css">
+    <link rel="stylesheet" href="/public/css/icomoon.css">
+    <link rel="stylesheet" href="/public/css/magnific-popup.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.css">
 
-    <link rel="stylesheet" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
 
     <!-- Styleswitcher ( This style is for demo purposes only, you may delete this anytime. ) -->
-    <link rel="stylesheet" id="theme-switch" href="/../../../dmitry.kalenyuk/projects/template-engine/public/css/style.css">
+    <link rel="stylesheet" id="theme-switch" href="/public/css/style.css">
     <!-- End demo purposes only -->
 
 
 
 
     <!-- Modernizr JS -->
-    <script src="/../../../dmitry.kalenyuk/projects/template-engine/public/js/modernizr-2.6.2.min.js"></script>
+    <script src="/public/js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
-    <script src="/../../../dmitry.kalenyuk/projects/template-engine/public/js/respond.min.js"></script>
+    <script src="/public/js/respond.min.js"></script>
     <![endif]-->
 
 </head>

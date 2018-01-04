@@ -37,5 +37,5 @@ $tpl->append([
 $tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
 
 
-echo $tpl->render('block_3');
+echo $tpl->render();
 

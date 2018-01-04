@@ -8,9 +8,5 @@
                 'Country' => 'Ukraine',
                 'City' => 'Kharkiv']) ?></p>
     </div>
-
-    <div>
-        <p>Partial Test</p>
-            <?php $this->partial('block_3')?>
-    </div>
+        <?php $this->partial('block_3', []); ?>
 </div>

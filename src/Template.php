@@ -90,6 +90,20 @@ class Template
         unset($this->vars);
     }
 
+    public  function render($file = null)
+    {
+        ob_start();
+        extract($this->vars);
+        if ($file == null){
+            require_once __DIR__ . "/../templates/" . $this->layout . ".php";
+        }else{
+            require_once __DIR__ . "/../templates/" . $this->layout . ".php";
+            require_once __DIR__ . "/../templates/$file.php";
+        }
+        $output = ob_get_clean();
+        return $output;
+    }
+
     /**
      * @param $file
      *
@@ -101,28 +115,25 @@ class Template
      */
 
 
-    public function partial($file, array $vars = [])
+    public function partial($file, array $vars = null)
     {
-        if (!empty($vars)){
-            $this->vars = $vars;
+        if (!empty($vars) and isset($vars) ){
+            foreach ($vars as $key => $value){
+                $this->vars[$key] = $value;
+            }
+        }else{
+            $vars = $this->vars;
         }
-        $path = __DIR__ . '/../templates/' . $file . '.php';
-        $content = file_get_contents($path);
-        $content = preg_replace('/{% (.*?) %}/', '<?= \$$1 ?>', $content);
-        ob_start();
-        extract($this->vars);
-        eval(' ?>' . $content . '<?php ');
-        return ob_get_clean();
-    }
 
-    public  function render($file)
-    {
+        $path = __DIR__ . '/../templates/' . $file . '.php';
+        file_get_contents($path);
         ob_start();
-        extract($this->vars);
-        require_once __DIR__ . "/../templates/" . $this->layout . ".php";
+        extract($vars);
+        var_dump($vars);
+        die();
         require_once __DIR__ . "/../templates/$file.php";
         $output = ob_get_clean();
-        return $output;
+        echo $output;
     }
 
 }
