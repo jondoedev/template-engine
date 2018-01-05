@@ -8,6 +8,9 @@
                 'Country' => 'Ukraine',
                 'City' => 'Kharkiv']) ?></p>
     </div>
-    <?php $this->partial('block_3'); ?>
+
     <?php $this->partial('block_1', ["name" => "qwe", "block_3_title" => "", "last_name" => '', 'age' => '', 'position' => '', 'company' => '']); ?>
+    <?php $this->partial('block_3'); ?>
+    <?php $this->partial('block_3'); ?>
+    <?php $this->partial('block_3', ["name" => "qwe", "block_3_title" => "", "last_name" => '', 'age' => '', 'position' => '', 'company' => ''] ); ?>
 </div>

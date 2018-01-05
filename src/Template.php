@@ -4,6 +4,7 @@ namespace TemplateEngine;
 
 class Template
 {
+    private $buffer =[];
     private $vars = [];
     public $helpers = [];
     public static $config;
@@ -11,6 +12,7 @@ class Template
 
     public function __construct($file)
     {
+
         $path = __DIR__ . '/../templates/' . $file . '.php';
         if (file_exists($path)) {
             $this->layout = $file;
@@ -92,8 +94,10 @@ class Template
 
     public  function render($file = null)
     {
+        // fix for vars rewriting
+        $this->buffer = $this->vars;
         ob_start();
-        extract($this->vars);
+        extract($this->vars, EXTR_SKIP);
         if ($file == null){
             require_once __DIR__ . "/../templates/" . $this->layout . ".php";
         }else{
@@ -120,17 +124,18 @@ class Template
         if (!empty($vars)){
             foreach ($vars as $key => $value) {
                     $this->vars[$key] = $value;
+                extract($vars);
             }
         }else{
-            $vars = $this->vars;
+            extract($this->buffer);
         }
         $path = __DIR__ . '/../templates/' . $file . '.php';
         file_get_contents($path);
         ob_start();
-        extract($vars);
-        require_once __DIR__ . "/../templates/$file.php";
-        $output = ob_get_clean();
-        echo $output;
+        include ( __DIR__ . "/../templates/$file.php");
+
+
+
     }
 
 }

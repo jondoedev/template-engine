@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 
-$tpl = new \TemplateEngine\Template( 'main');
+$tpl = new \TemplateEngine\Template( 'layout');
 $tpl->setHelper('hello', function () {
     echo 'Hello, ';
 });
@@ -37,5 +37,6 @@ $tpl->append([
 $tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
 
 
-echo $tpl->render();
+echo $tpl->render('block_1');
+echo $tpl->render('block_3');
 
