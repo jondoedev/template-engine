@@ -36,7 +36,6 @@ $tpl->append([
 // adding single variable
 $tpl->append(['pageTitle' => 'CodeIT | Template Engine']);
 
-
-echo $tpl->render('block_1');
-echo $tpl->render('block_3');
+$tpl->render('block_3');
+$tpl->render('block_1');
 
