@@ -92,21 +92,7 @@ class Template
         unset($this->vars);
     }
 
-    public  function render($file = null)
-    {
-        // fix for vars rewriting
-        $this->buffer = $this->vars;
-        ob_start();
-        extract($this->vars, EXTR_SKIP);
-        if ($file == null){
-            require_once __DIR__ . "/../templates/" . $this->layout . ".php";
-        }else{
-            require_once __DIR__ . "/../templates/" . $this->layout . ".php";
-            require_once __DIR__ . "/../templates/$file.php";
-        }
-        $output = ob_get_clean();
-        return $output;
-    }
+
 
     /**
      * @param $file
@@ -118,6 +104,21 @@ class Template
      * also this method implements a custom syntax using regular expressions
      */
 
+
+    public function render($filename)
+    {
+        // fix for vars rewriting
+        $this->buffer = $this->vars;
+        $content = __DIR__.'/../templates/'.$filename.'.php';
+        ob_start();
+        extract($this->vars);
+        if(file_exists($content))
+        {
+            include $content;
+            $content = ob_get_clean();
+        }
+        require __DIR__ . '/../templates/'. $this->layout .'.php';
+    }
 
     public function partial($file, array $vars = null)
     {
